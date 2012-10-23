@@ -10,6 +10,7 @@
     display: -ms-grid;
     height: 100%;
     width: 100%;
+    background-color:#00103F;
 }
 
     .fragment header[role=banner] {
