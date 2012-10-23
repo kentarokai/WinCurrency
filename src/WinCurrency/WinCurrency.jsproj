@@ -215,7 +215,9 @@
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
+    <Content Include="js\data.js" />
     <Content Include="js\default.js" />
+    <Content Include="js\jquery-1.6.4.js" />
     <Content Include="js\navigator.js" />
     <None Include="WinCurrency_StoreKey.pfx" />
     <None Include="Package.StoreAssociation.xml" />
