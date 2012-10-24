@@ -138,8 +138,9 @@
 
         _rebuildDst: function () {
             var $tiles = $("#tiles");
+            var $addTile = $("#addtile");
 
-            $tiles.empty();
+            $(".currencyTile", $tiles).remove();
 
             var items = appUtil.currencyInfo;
             var user = appUtil.userData;
@@ -157,12 +158,13 @@
                         $("<div/>").addClass("dstFlag").css("background-image",
                             "url(/images/flags/" + item.id + ".svg)").appendTo($tile);
 
-                        $tiles.append($tile);
+                        $tile.insertBefore($addTile);
+
+//                        $tiles.append($tile);
                         break;
                     }
                 }
             }
-
             /*
             <div class="tile">
                         <div class="dstValue">123.456789</div>

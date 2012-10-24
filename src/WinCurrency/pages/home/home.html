@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <title>ホーム ページ</title>
 
@@ -20,16 +20,28 @@
         <header aria-label="Header content" role="banner">
             <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
             <div id="headtile">
-                <input type="number" id="srcValue" min="0"/>
+                <input type="number" id="srcValue" min="0" />
                 <div id="srcName">
                     <select id="srcNames"></select>
                 </div>
                 <div id="srcFlag"></div>
             </div>
+            <div id="myAd"
+                data-win-control="MicrosoftNSJS.Advertising.AdControl"
+                data-win-options="{applicationId: '26eb20e2-2f5a-4547-be02-2720af641e8c', adUnitId: '102128'}">
+            </div>
         </header>
         <div class="content" aria-label="Main content" role="main">
             <div id="mainContent">
-                <div id="tiles"></div>
+                <div id="tiles">
+                    <div id="addtile" class="tile">
+                        <div id="addName">
+                            <select id="addNames">
+                                <option value="hoge">他の通貨を追加</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

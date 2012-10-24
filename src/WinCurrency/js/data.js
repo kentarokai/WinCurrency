@@ -49,13 +49,16 @@
         }
 
         var v1 = src.value / dst.value * value;
-        var v1a = Math.floor(v1);
-        var v1b = v1 - v1a;
-        var v1bs = v1b.toPrecision(num);
-        var v2b = parseFloat(v1bs);
-        var v2 = v1a + v2b;
+        //v1 = 0.12345;
+        var keta = Math.floor(Math.log(v1) * Math.LOG10E);
 
-        return v2;
+        keta = Math.min(-1, keta);
+
+        var pow = Math.pow(10, num - 1 - keta);
+        var v2 = v1 * pow;
+        var v3 = Math.round(v2) / pow;
+
+        return v3;
     }
 
     function _findItemById(id) {
@@ -358,8 +361,8 @@
 "VND",
 "YER",
 "ZAR",
-"ZMK",
-"ZWD"
+"ZMK"/*,
+"ZWD"*/
             ];
 
             appUtil.userData = userData;

@@ -26,7 +26,7 @@
             position: relative;
             margin-left: 120px;
         }
-    /*
+        /*
             .homepage #mainContent:after {
                 content: "";
                 display: block;
@@ -38,8 +38,20 @@
                 visibility: hidden;
             }
             */
+        .homepage .fragment header[role=banner] {
+            -ms-grid-columns: 120px 1fr 260px;
+            position: relative;
+        }
 
 
+    #myAd {
+        -ms-grid-column: 3;
+        width: 250px;
+        height: 125px;
+        position: absolute;
+        top: 35px;
+        right: 10px;
+    }
 
     #tiles {
         column-fill: auto;
@@ -75,7 +87,7 @@
             border: 1px solid #00103F;
             font-size: 30px;
             left: 10px;
-            top:5px;
+            top: 5px;
             display: block;
         }
 
@@ -126,8 +138,8 @@
             left: 10px;
             /*        background-color:green;*/
             font-size: 30px;
-            overflow:hidden;
-            text-overflow:ellipsis;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .tile .dstName {
@@ -151,6 +163,26 @@
             background-size: contain;
             background-position: right bottom;
         }
+
+        .tile#addtile {
+            background-color: transparent;
+            color: #00103F;
+        }
+
+        .tile#addtile #addName {
+            width: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+
+            .tile#addtile #addName select {
+                margin:0px 0px 0px 0px;
+                font-size: 16px;
+                width: 100%;
+                border:1px solid #00103F;
+                height:100px;
+            }
 }
 
 @media screen and (-ms-view-state: snapped) {
@@ -348,6 +380,4 @@
                 height: calc(100% - 15px);
                 border: 8px solid #333333;
             }
-
-    
 }
