@@ -87,6 +87,7 @@
                 user.srcValue = newValue;
                 clearTimeout(this._recalcTimer);
                 this._recalcTimer = setTimeout(function () {
+                    appUtil.saveUserData();
                     _this._recalc();
                 }, 1000);
             }
@@ -96,6 +97,8 @@
         _onCurrencyInfoLoaded: function () {
             this._rebuildSrc();
             this._rebuildDst();
+            this._initAddNames();
+            this._setAddNames();
 
             this._recalc();
         },
@@ -151,16 +154,7 @@
                 for (var j in items) {
                     var item = items[j];
                     if (id == item.id) {
-
-                        var $tile = $("<div/>").addClass("tile").addClass("currencyTile").data("currencyId", item.id);
-                        $("<div/>").addClass("dstValue").appendTo($tile);
-                        $("<div/>").addClass("dstName").text("(" + item.id + ") " + item.name).appendTo($tile);
-                        $("<div/>").addClass("dstFlag").css("background-image",
-                            "url(/images/flags/" + item.id + ".svg)").appendTo($tile);
-
-                        $tile.insertBefore($addTile);
-
-//                        $tiles.append($tile);
+                        this._appendDstTile(item);
                         break;
                     }
                 }
@@ -172,6 +166,101 @@
                         <div class="dstFlag"></div>
                     </div>
             */
+        },
+
+        _appendDstTile: function (item) {
+            var $addTile = $("#addtile");
+
+            var $tile = $("<div/>").addClass("tile").addClass("currencyTile").data("currencyId", item.id);
+            $("<div/>").addClass("dstValue").appendTo($tile);
+            $("<div/>").addClass("dstName").text("(" + item.id + ") " + item.name).appendTo($tile);
+            $("<div/>").addClass("dstFlag").css("background-image",
+                "url(/images/flags/" + item.id + ".svg)").appendTo($tile);
+
+            $tile.insertBefore($addTile);
+
+            this._initTileEvent($tile);
+        },
+
+        _initTileEvent: function ($tile) {
+
+            $tile.attr("draggable", "true");
+
+            $tile.bind("dragstart", function (e) {
+
+                //appUtil.debug(e);
+                $(this).css("background-color", "red");
+
+            });
+
+            $tile.bind("dragend", function (e) {
+
+                //appUtil.debug(e);
+                $(this).css("background-color", "");
+
+            });
+
+        },
+
+        _initAddNames: function () {
+            var $sel = $("#addNames");
+            var _this = this;
+
+            $sel.change(function () {
+                _this.onAddNameChanged($(this).val());
+            });
+        },
+
+        onAddNameChanged: function (newId) {
+
+            appUtil.debug(newId);
+            if ("default" == newId) {
+                return;
+            }
+            var items = appUtil.currencyInfo;
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+                if (newId == item.id) {
+                    this._appendDstTile(item);
+                    appUtil.addDstId(newId);
+                    break;
+                }
+            }
+            this._setAddNames();
+            this._recalc();
+        },
+
+        _setAddNames: function () {
+            var $sel = $("#addNames");
+
+            $("option.name", $sel).remove();
+
+            var items = appUtil.currencyInfo;
+            var user = appUtil.userData;
+
+            var appended = 0;
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+
+                var found = false;
+                for (var j = 0; j < user.dstIds.length; j++) {
+                    var _id = user.dstIds[j];
+                    if (item.id == _id) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found) {
+                    continue;
+                }
+
+                $sel.append($("<option value='" + item.id + "' class='name'>" + "(" + item.id + ") " + item.name + "</option>"));
+                appended++;
+            }
+
+            $sel.val("default");
+
+            $("#addtile").css("display", appended ? "display" : "none");
         }
     });
 })();

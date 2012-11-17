@@ -18,6 +18,7 @@
     <!-- 読み込まれて表示されるコンテンツです。 -->
     <div class="fragment homepage">
         <header aria-label="Header content" role="banner">
+            <div id="headBG"></div>
             <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
             <div id="headtile">
                 <input type="number" id="srcValue" min="0" />
@@ -37,13 +38,22 @@
                     <div id="addtile" class="tile">
                         <div id="addName">
                             <select id="addNames">
-                                <option value="hoge">他の通貨を追加</option>
+                                <option value="default">他の通貨を追加</option>
                             </select>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div id="appBar" data-win-control="WinJS.UI.AppBar" data-win-options="">
+    
+        <button 
+            data-win-control="WinJS.UI.AppBarCommand" 
+            data-win-options="{id:'cmdRemove',label:'リストから外す',icon:'remove',
+                section:'global',tooltip:'リストから外す'}">
+        </button>
+        
     </div>
 </body>
 </html>

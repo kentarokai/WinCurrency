@@ -30,7 +30,12 @@
         currencyInfo: currencyInfo,
         userData: userData,
         isOnline: isOnline,
-        calcWithCurrentSource: calcWithCurrentSource
+        calcWithCurrentSource: calcWithCurrentSource,
+        addDstId: addDstId,
+        removeDstId: removeDstId,
+        setSrcId: setSrcId,
+        setSrcValue: setSrcValue,
+        saveUserData: _saveUserDataAsCache
     });
 
 
@@ -156,6 +161,31 @@
         localStorage.currencyInfoCache = JSON.stringify(cacheData);
     }
 
+    function setSrcId(id) {
+        userData.srcId = id;
+        _saveCurrencyInfoAsCache();
+    }
+
+    function setSrcValue(value) {
+        userData.srcValue = value;
+        _saveCurrencyInfoAsCache();
+    }
+
+    function addDstId(id) {
+        userData.dstIds.push(id);
+        _saveUserDataAsCache();
+    }
+
+    function removeDstId(id) {
+        var len = userData.dstIds.length;
+        for (var i = len - 1; i >= 0; i--) {
+            if (id == userData.dstIds[i]) {
+                userData.dstIds.splice(i, 1);
+            }
+        }
+        _saveUserDataAsCache();
+    }
+
     function _saveUserDataAsCache() {
         localStorage.userData = JSON.stringify(userData);
     }
@@ -276,93 +306,7 @@
 "ANG",
 "ARS",
 "AUD",
-"BDT",
-"BGN",
-"BHD",
-"BND",
-"BOB",
-"BRL",
-"BWP",
-"CAD",
-"CHF",
-"CLP",
-"CNY",
-"COP",
-"CRC",
-"CSD",
-"CZK",
-"DKK",
-"DOP",
-"DZD",
-"EGP",
-"EUR",
-"FJD",
-"GBP",
-"HKD",
-"HNL",
-"HRK",
-"HUF",
-"IDR",
-"ILS",
-"INR",
-"JMD",
-"JOD",
-"JPY",
-"KES",
-"KRW",
-"KWD",
-"KYD",
-"KZT",
-"LBP",
-"LKR",
-"LTL",
-"LVL",
-"MAD",
-"MDL",
-"MKD",
-"MUR",
-"MVR",
-"MXN",
-"MYR",
-"NAD",
-"NGN",
-"NIO",
-"NOK",
-"NPR",
-"NZD",
-"OMR",
-"PEN",
-"PGK",
-"PHP",
-"PKR",
-"PLN",
-"PYG",
-"QAR",
-"RON",
-"RUB",
-"SAR",
-"SCR",
-"SEK",
-"SGD",
-"SLL",
-"SVC",
-"THB",
-"TND",
-"TRY",
-"TTD",
-"TWD",
-"TZS",
-"UAH",
-"UGX",
-"USD",
-"UYU",
-"UZS",
-"VEB",
-"VND",
-"YER",
-"ZAR",
-"ZMK"/*,
-"ZWD"*/
+"BDT"
             ];
 
             appUtil.userData = userData;

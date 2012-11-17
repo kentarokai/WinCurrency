@@ -20,6 +20,17 @@
             color: #000;
         }
 
+    #headBG {
+        position:absolute;
+        width:100%;
+        height:100px;
+        background-color:#fff;
+        transform:rotate(-1deg);
+        transform-origin:left top;
+        top:190px;
+        display:none;
+    }
+
         .homepage #mainContent {
             width: auto;
             height: calc(100% - 80px);
@@ -115,6 +126,7 @@
             background-repeat: no-repeat;
             background-size: contain;
             background-position: right bottom;
+
         }
 
     .tile {
